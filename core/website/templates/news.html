@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ news.title }}{% endblock %}
+
+{% block content %}
+<a href="javascript: history.go(-1)"><- Назад</a>
+<h1>{{ news.title }}</h1>
+<img src="/media/{{ news.photo }}" alt="">
+<p>{{ news.description }}</p>
+<h2>Комментарии</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить</button>
+</form>
+{% for comment in comments %}
+<article>
+    <h3>{{ comment.user }}</h3>
+    <p>{{ comment.message }}</p>
+    <span>{{ comment.created_at }}</span>
+</article>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ request.user }}{% endblock %}
+
+{% block content %}
+<h1>Профиль</h1>
+<h2>{{ request.user }}</h2>
+<h3>Мои комментарии</h3>
+{% for comment in comments %}
+<article>
+    <a href="/news/{{ comment.news.id }}/">{{ comment.news }}</a>
+    <p>{{ comment.message }}</p>
+    <span>{{ comment.created_at }}</span>
+    <a href="/delete_comment/{{ comment.id }}">Удалить</a>
+</article>
+{% endfor %}
+{% endblock %}

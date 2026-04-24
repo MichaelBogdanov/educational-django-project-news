@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Новости | Главная{% endblock %}
+
+{% block content %}
+<h1>Приветствую, {% if user.is_authenticated %}{{ user.email }}{% else %}гость{% endif %}</h1>
+<h1>Новости</h1>
+<section class="news-container">
+    {% for news in news %}
+    <a href="/news/{{ news.id }}" class="news-card">
+        <img src="/media/{{ news.photo }}" alt="">
+        <h2>{{ news.title }}</h2>
+        <p>{{ news.description }}</p>
+    </a>
+    {% endfor %}
+</section>
+{% endblock %}
